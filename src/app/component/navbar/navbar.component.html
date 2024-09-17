@@ -1,0 +1,12 @@
+<nav class="navbar">
+    <ul class="nav-left">
+      <img [src]="imageSrc" class="circular-image" style="width: 52px; height: fit-content;" routerLink="/" routerLinkActive="active">
+    </ul>
+    <ul class="nav-right">
+      <li *ngIf="!isLoggedIn"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li *ngIf="!isLoggedIn"><a routerLink="/register" routerLinkActive="active">Register</a></li>
+      <li *ngIf="isLoggedIn"><a>Bienvenido {{userLogged}}</a></li>
+      <li *ngIf="isLoggedIn"><a (click)="logout()">Logout</a></li>
+      <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+    </ul>
+  </nav>

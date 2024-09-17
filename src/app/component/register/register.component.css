@@ -1,0 +1,65 @@
+.card-style {
+    background-color: #F4F4F6; /* Fondo claro similar al de la imagen */
+    color: #333; /* Texto oscuro */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Nav Pills */
+  .nav-link {
+    background-color: #6D4F92; /* Morado basado en los tonos de la imagen */
+    color: white;
+    font-weight: bold; /* Texto en negrita */
+    transition: background-color 0.3s ease;
+    border-radius: 50px; /* Bordes redondeados */
+  }
+
+  .nav-link:hover {
+    background-color: #D83A56; /* Color de hover, inspirado en el rojo de la imagen */
+  }
+
+  .nav-link.active {
+    background-color: #D83A56; /* Activo en rojo */
+  }
+
+  /* Form Controls */
+  .form-control {
+    background-color: #E0E0E0; /* Fondo claro */
+    color: #333; /* Texto oscuro */
+    border: none;
+    margin-bottom: 15px;
+    border-radius: 8px; /* Bordes suaves */
+  }
+
+  .form-control::placeholder {
+    color: #666; /* Placeholder en gris */
+  }
+
+  /* Buttons */
+  .btn-primary {
+    background-color: #6D4F92; /* Morado principal */
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #D83A56; /* Hover en rojo */
+  }
+
+  .btn-secondary {
+    background-color: #4C4F59; /* Botones secundarios en gris oscuro */
+    color: white;
+    border-radius: 50px; /* Bordes suaves */
+  }
+
+  .btn-secondary:hover {
+    background-color: #6D4F92; /* Hover en morado */
+  }
+
+  /* Quick Access Buttons */
+  .quick-access button {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
