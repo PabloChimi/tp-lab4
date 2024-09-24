@@ -1,0 +1,40 @@
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Asegúrate de que ocupe toda la altura del contenedor padre */
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.messages {
+    flex-grow: 1; /* Esto permite que la zona de mensajes ocupe todo el espacio restante */
+    padding: 10px;
+    overflow-y: auto; /* Para permitir scroll si los mensajes exceden la altura disponible */
+    background-color: white;
+}
+
+.input-container {
+    display: flex;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc; /* Agregar una línea divisoria en la parte superior */
+}
+
+input {
+    flex-grow: 1; /* Esto permite que el input se ajuste al espacio disponible */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #4C4F59;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}

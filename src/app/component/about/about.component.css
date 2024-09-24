@@ -1,97 +1,68 @@
-Centrar el contenedor en la pantalla
 .about-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px;
-    max-width: 600px; /* Limitar el ancho máximo */
-    height: 100vh; /* Ocupa toda la pantalla */
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-
-  }
-  
-  /* Estilo de la imagen de perfil */
-  .profile-image img {
-    border-radius: 50%; /* Hacer la imagen redonda */
-    width: 150px;
-    height: 150px;
-    object-fit: cover; /* Ajustar la imagen para que no se deforme */
-    margin-bottom: 20px;
-  }
-  
-  h1 {
-    font-size: 2.5em;
-    color: #333;
-  }
-  
-  p, li {
-    font-size: 1.2em;
-    color: #555;
-    line-height: 1.6;
-  }
-  
-  a {
-    color: #007BFF;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-
-  .btn-primary {
-    background-color: #6D4F92; /* Morado principal */
-    border: none;
-    border-radius: 50px; /* Bordes redondeados */
-    transition: background-color 0.3s ease;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    width: 30%;
-  }
-
-  .btn-primary:hover {
-    background-color: #D83A56; /* Hover en rojo */
-  }
-
-  button:hover {
-    background-color: #0056b3;
-  }
-
-
-  /* Asegúrate de que el contenedor ocupe el ancho completo */
-.about-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Centra el contenido horizontalmente */
+  max-width: 800px;
+  margin: 50px auto;
   padding: 20px;
-  margin-top: 10px; /* Ajusta según la altura de la navbar */
-}
-
-/* Ajusta la imagen de perfil */
-.profile-image img {
-  border-radius: 50%; /* Hace que la imagen sea circular */
-  width: 150px; /* Ajusta el tamaño según sea necesario */
-  height: 150px; /* Mantiene la imagen circular */
-  object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
-}
-
-/* Alinea el texto y otros elementos */
-h1, h2, p {
+  background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
+  border-radius: 15px;
+  color: #fff; /* Texto blanco para contraste */
   text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
+/* Imagen de perfil */
+.profile-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #8EB7C3; /* Borde con el color principal */
+}
+
+/* Títulos principales */
+h1, h2 {
+  color: #8EB7C3; /* Color principal para los títulos */
+}
+
+/* Lista de juegos */
 ul {
-  list-style: none; /* Elimina los puntos de la lista */
+  list-style-type: none;
   padding: 0;
 }
 
 ul li {
-  margin-bottom: 10px; /* Espacio entre elementos de la lista */
+  background: rgba(255, 255, 255, 0.1);
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  transition: background 0.3s;
 }
 
+ul li:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Botón de volver */
+.btn {
+  background-color: #8EB7C3;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #6da0b2; /* Color más oscuro en hover */
+}
+
+/* Enlaces */
+a {
+  color: #8EB7C3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}

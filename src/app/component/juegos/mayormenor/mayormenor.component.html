@@ -1,0 +1,22 @@
+<div class="game-container">
+    <h1>Juego Mayor o Menor</h1>
+    
+    <div *ngIf="currentCard">
+      <p>Carta actual:</p>
+      <img [src]="currentCard.image" alt="Carta actual">
+    </div>
+    
+    <div *ngIf="nextCard">
+      <!-- Deshabilitar los botones si el juego ha terminado -->
+      <button (click)="guessHigher()" [disabled]="gameOver">Mayor</button>
+      <button (click)="guessLower()" [disabled]="gameOver">Menor</button>
+    </div>
+  
+    <p *ngIf="message">{{ message }}</p>
+    
+    <div>
+      <p>Puntuación: {{ score }}</p>
+      <button (click)="startGame()">Reiniciar Juego</button>
+    </div>
+  </div>
+  

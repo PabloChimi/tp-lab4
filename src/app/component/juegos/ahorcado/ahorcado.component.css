@@ -1,0 +1,39 @@
+.hangman-container {
+    text-align: center;
+    margin: 20px;
+    text-align: center;
+    padding: 50px 0;
+    background: rgba(0, 0, 0, 0.7); /* Aumenta la opacidad a 0.7 */
+    border-radius: 10px; /* Redondea los bordes para un mejor diseño */
+    margin: 20px; /* Añade un margen para evitar que esté pegado a los bordes */
+  }
+  
+  .word {
+    font-size: 2em;
+    letter-spacing: 10px;
+  }
+  
+  .alphabet {
+    margin-top: 20px;
+  }
+  
+  button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .game-status {
+    margin-top: 20px;
+    font-size: 1.2em;
+  }
+
+  p, span, h2 {
+    color: white;
+  }

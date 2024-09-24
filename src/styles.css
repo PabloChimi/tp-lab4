@@ -89,6 +89,15 @@
 .quick-access button:hover {
     background-color: #6c98a5; 
 } */
+body {
+    background-image: url('assets/images/background-game-image.webp');
+    background-size: cover; /* Ajusta el tamaño de la imagen */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-attachment: fixed; /* Mantiene el fondo fijo al hacer scroll */
+  }
+
+  
 body, html {
   height: 100%;
   margin: 0;
@@ -101,3 +110,4 @@ body, html {
 .navbar {
   height: 70px; /* Ajusta según el tamaño de tu navbar */
 }
+

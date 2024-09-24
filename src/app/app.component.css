@@ -1,0 +1,56 @@
+.chat-icon {
+    position: fixed; /* Esto fija el icono en la pantalla, no en el flujo de la página */
+    bottom: 20px; /* Se coloca 20px desde la parte inferior */
+    right: 20px;  /* Se coloca 20px desde la parte derecha */
+    background-color: #4C4F59; /* Color de fondo */
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: white;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.chat-window {
+    position: fixed;
+    bottom: 80px; /* Ajuste para que no se superponga al ícono del chat */
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    z-index: 9999; /* Asegura que esté por encima de otros componentes */
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background-color: #4C4F59;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px 10px 0 0;
+}
+
+.chat-content {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto; /* Permite hacer scroll si el contenido es muy grande */
+    background-color: #f1f1f1;
+}
+
+.chat-footer {
+    padding: 10px;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

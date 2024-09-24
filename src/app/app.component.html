@@ -1,3 +1,24 @@
 <app-navbar></app-navbar>
+<div *ngIf="isLoggedIn">
+  <!-- Icono de chat en la esquina inferior derecha -->
+  <div class="chat-icon" (click)="toggleChat()">
+      <fa-icon [icon]="faComment"></fa-icon>
+  </div>
+
+  <!-- Mostrar la ventana del chat solo cuando isChatOpen es true -->
+  <div *ngIf="isChatOpen" class="chat-window">
+      <div class="chat-header">
+          <p>Chat</p>
+          <button (click)="toggleChat()">Cerrar</button>
+      </div>
+
+      <div class="chat-content">
+          <!-- Aquí va el contenido del chat, por ejemplo los mensajes -->
+          <app-chat></app-chat>
+      </div>
+
+  </div>
+</div>
+
 <router-outlet />
 <!-- Etiqueta encargada de mostrar el componente relacionado a la ruta -->

@@ -12,23 +12,22 @@ export class AuthenticationService implements OnInit{
 
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
+  private loggedUserName = "";
   
   constructor(public auth: AngularFireAuth, public router: Router, public ngZone: NgZone, public snackBar: MatSnackBar, private firestore: Firestore) { 
-      const storedAuth = localStorage.getItem('isLoggedIn');
-      this.isLoggedInSubject.next(storedAuth === 'true');
     }
 
     ngOnInit(): void { }
 
   login(email: string, password: string) {
     return this.auth.signInWithEmailAndPassword(email, password)
-    .then((result) => {
+    .then(() => {
       this.ngZone.run(() => {
         
         let col = collection(this.firestore, 'logins');
         addDoc(col, { fecha: new Date(), "user": email});
 
-        localStorage.setItem('isLoggedIn', 'true');
+        this.loggedUserName = email;
         this.isLoggedInSubject.next(true);
         this.router.navigate(['/']);
       });
@@ -54,6 +53,12 @@ export class AuthenticationService implements OnInit{
       case "auth/invalid-credential":
         errorMessage = "Email y/o contraseña incorrectos";
         break;
+      case "auth/admin-restricted-operation":
+        errorMessage = "No se ingreso email o contraseña";
+        break;
+        case "auth/weak-password":
+          errorMessage = "La contraseña no cumple con los requisitos: Min 6 caracteres";
+          break;
       default:
         errorMessage = error.code
         break;
@@ -64,7 +69,6 @@ export class AuthenticationService implements OnInit{
   register(newUserEmail: string, newUserPassword: string){
     this.auth.createUserWithEmailAndPassword(newUserEmail, newUserPassword).then((result) => {
       this.ngZone.run(() => {
-        localStorage.setItem('isLoggedIn', 'true');
         this.isLoggedInSubject.next(true);
         this.router.navigate(['/']);
       });
@@ -83,6 +87,11 @@ export class AuthenticationService implements OnInit{
     this.isLoggedInSubject.next(false);
     this.auth.signOut();
     this.router.navigate(['/login'])
+  }
+
+  getUserLoggedName() {
+    console.log(this.loggedUserName);
+    return this.loggedUserName.split("@")[0];
   }
   
 }
