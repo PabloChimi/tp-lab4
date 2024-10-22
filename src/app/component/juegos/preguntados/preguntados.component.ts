@@ -6,6 +6,7 @@ import { Resultado } from '../../../interface/resultado';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ResultadoService } from '../../../services/resultado.service';
 import { CommonModule } from '@angular/common';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-preguntados',
@@ -31,7 +32,7 @@ export class PreguntadosComponent {
 
   user:any;
 
-  constructor(private paisService:PaisesService, private ruteo:Router, private auth: AuthenticationService, private resultadoService: ResultadoService) { 
+  constructor(private paisService:PaisesService, private router:Router, private auth: AuthenticationService, private resultadoService: ResultadoService,) { 
     this.user = auth.getUserLoggedName();
   }
 
@@ -71,19 +72,14 @@ export class PreguntadosComponent {
     const fechaParseada = fecha.toString();
 
     let resultado: Resultado = {
-      uid: this.user.uid,
       email: this.user.email,
       fecha: fechaParseada,
       juego: 'Preguntados',
-      aciertos: this.cantidadAciertos,
-      intentos: this.cantidadJugados
     }
 
     this.resultadoService.enviarResultado(resultado);
 
     this.cantidadAciertos = 0;
-
-    this.ruteo.navigateByUrl('juegos')
   }
 
   
@@ -106,15 +102,10 @@ export class PreguntadosComponent {
     if(item.name.common == this.paisCorrecto.name.common){
       item.correcto = true;
       this.cantidadAciertos++;
-      setTimeout(() => {
-        this.mostrarModal('GANASTE','¿Queres seguir jugando?');
-      }, 500);
-      
-      
     }
     else{
       setTimeout(() => {
-        this.mostrarModal('PERDISTE','¿Queres seguir jugando?');
+        this.win();
       }, 500);
     }
   }
@@ -141,5 +132,45 @@ export class PreguntadosComponent {
     this.displayModal=true;
     this.modalMsj1 = msj1;
     this.modalMsj2 = msj2;
+  }
+
+  win() {
+    Swal.fire({
+      title: '¡Juego terminado!',
+      text: `Tu resultado fue: ${this.cantidadAciertos}`,
+      confirmButtonText: "Guardar e ir a Resultados",
+      confirmButtonColor: '#6D4F92',
+      background: '#E0E0E0',
+      color: '#000000',
+      heightAuto: false,
+      cancelButtonColor: '#6D4F92',
+      showCancelButton: true,
+      cancelButtonText: 'Seguir jugando'
+    }).then((result) => {
+      console.log(result)
+      if (result.isConfirmed) {
+        console.log("Entro 1")
+        this.guardarDatos();
+        this.reiniciar();
+        this.router.navigateByUrl('resultados');
+      } else {
+        console.log("Entro 2")
+        this.reiniciar();
+      }
+    });
+  }
+  
+  guardarDatos() {
+    const tiempo = new Date().getTime();
+    const fecha = new Date(tiempo);    
+    const fechaParseada = fecha.toString();
+    let resultado: Resultado = {
+      email: this.auth.getUserLoggedName(),
+      fecha: fechaParseada,
+      juego: 'Preguntados',
+      resultado: this.cantidadAciertos
+    }
+    this.resultadoService.enviarResultado(resultado);
+  
   }
 }

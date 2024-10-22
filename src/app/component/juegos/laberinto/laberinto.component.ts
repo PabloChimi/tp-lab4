@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+import { Resultado } from '../../../interface/resultado';
+import { AuthenticationService } from '../../../services/authentication.service';
+import { ResultadoService } from '../../../services/resultado.service';
 
 @Component({
   selector: 'app-laberinto',
@@ -20,23 +25,17 @@ export class LaberintoComponent implements OnInit{
   seconds : number = 0;
   intervalId: any;
   tiempoJugador : any;
-
+  gameOver = false;
   // playerPosition = { x: 1, y: 1 };
   // playerPixelPosition = { top: 20, left: 20 }; // Empieza en la posición (1, 1) de la cuadrícula.
-  
+  constructor(private router: Router, private resultadoService: ResultadoService, private authService: AuthenticationService) {
+
+  }
   ngOnInit() {
-    this.maze = this.generateRandomMaze(11); // Generar el laberinto aleatorio
-  
-    this.startTimer();
-    // Inicializar posición del jugador
-    this.playerPosition = { x: 1, y: 1 };
-    this.playerPixelPosition = {
-      top: this.playerPosition.x * (this.cellSize + this.gapSize),
-      left: this.playerPosition.y * (this.cellSize )
-    };
+    this.restartGame();
   }
   
-  cellSize = 60;
+  cellSize = 50;
   gapSize = 3;
   
   playerPosition = { x: 1, y: 1 };
@@ -77,19 +76,21 @@ export class LaberintoComponent implements OnInit{
 
 @HostListener('window:keydown', ['$event'])
 handleKeyDown(event: KeyboardEvent) {
-  switch(event.key) {
-    case 'ArrowUp':
-      this.movePlayer('up');
-      break;
-    case 'ArrowDown':
-      this.movePlayer('down');
-      break;
-    case 'ArrowLeft':
-      this.movePlayer('left');
-      break;
-    case 'ArrowRight':
-      this.movePlayer('right');
-      break;
+  if(!this.gameOver) {
+    switch(event.key) {
+      case 'ArrowUp':
+        this.movePlayer('up');
+        break;
+      case 'ArrowDown':
+        this.movePlayer('down');
+        break;
+      case 'ArrowLeft':
+        this.movePlayer('left');
+        break;
+      case 'ArrowRight':
+        this.movePlayer('right');
+        break;
+    }
   }
 }
 
@@ -136,8 +137,23 @@ checkIfGameWon() {
   if (this.playerPosition.x === this.exitPosition.x && this.playerPosition.y === this.exitPosition.y) {
     this.tiempoJugador = this.formatTime()
     this.stopTimer();
-    alert("¡Has ganado en: " + this.tiempoJugador);
+    this.gameOver = true;
+    setTimeout(() => {
+      this.win()
+    }, 1000);
   }
+}
+
+restartGame() {
+  this.gameOver = false;
+  this.stopTimer();
+  this.maze = this.generateRandomMaze(11); // Generar el laberinto aleatorio
+  this.startTimer();
+  this.playerPosition = { x: 1, y: 1 };
+  this.playerPixelPosition = {
+    top: this.playerPosition.x * (this.cellSize + this.gapSize),
+    left: this.playerPosition.y * (this.cellSize )
+  };
 }
 
 startTimer() {
@@ -164,5 +180,46 @@ stopTimer(){
   this.seconds = 0;
   clearInterval(this.intervalId);
 }
+
+win() {
+  Swal.fire({
+    title: '¡Juego terminado!',
+    text: `Tu resultado fue: ${this.tiempoJugador}`,
+    confirmButtonText: "Guardar e ir a Resultados",
+    confirmButtonColor: '#6D4F92',
+    background: '#E0E0E0',
+    color: '#000000',
+    heightAuto: false,
+    cancelButtonColor: '#6D4F92',
+    showCancelButton: true,
+    cancelButtonText: 'Seguir jugando'
+  }).then((result) => {
+    console.log(result)
+    if (result.isConfirmed) {
+      console.log("Entro 1")
+      this.guardarDatos();
+      this.restartGame();
+      this.router.navigateByUrl('resultados');
+    } else {
+      console.log("Entro 2")
+      this.restartGame();
+    }
+  });
+}
+
+guardarDatos() {
+  const tiempo = new Date().getTime();
+  const fecha = new Date(tiempo);    
+  const fechaParseada = fecha.toString();
+  let resultado: Resultado = {
+    email: this.authService.getUserLoggedName(),
+    fecha: fechaParseada,
+    juego: 'Laberinto',
+    resultado: this.tiempoJugador
+  }
+  this.resultadoService.enviarResultado(resultado);
+
+}
+
 
 }

@@ -15,8 +15,8 @@
   }
   
   .wall, .path {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
     box-sizing: border-box;
   }
   
@@ -30,8 +30,8 @@
   
   .player {
     position: absolute;
-    width: 60px;  
-    height: 60px;
+    width: 50px;  
+    height: 50px;
     background-color: red;
     transition: all 0.2s ease-in-out; 
   }
@@ -48,7 +48,8 @@
   }
 
 .timer {
-  font-size: 80px;
+  font-size: 60px;
+  color: red;
   align-items: center;
   text-align: center;
 }
@@ -58,9 +59,41 @@
   line-height: 1;
 }
 .titulo{
-  line-height: 1;
+  line-height: 0.5;
   text-align: center;
 }
 .textotit {
   font-size: 80px;
+}
+
+.game-container {
+  max-width: 1000px;
+  margin: 10px auto;
+  text-align: center;
+  background-color: #2d2d2d;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  background-color: #8EB7C3;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #6a9caf;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }

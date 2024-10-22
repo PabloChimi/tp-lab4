@@ -32,15 +32,13 @@
     </div>
     
     <div class="alphabet">
-        <button *ngFor="let letter of alphabet" [disabled]="isLetterGuessed(letter) || isGameWon() || isGameLost()"
+        <button *ngFor="let letter of alphabet" [disabled]="isLetterGuessed(letter) || gameWon || gameLost"
             (click)="onLetterClick(letter)">
             {{ letter }}
         </button>
     </div>
 
     <div class="game-status">
-        <p *ngIf="isGameWon()">¡Ganaste!</p>
-        <p *ngIf="isGameLost()">¡Perdiste! La palabra era {{ secretWord }}.</p>
         <p>Intentos restantes: {{ attemptsLeft }}</p>
         <button *ngIf="attemptsLeft == 0 || isGameWon()" (click)="restartGame()">REINICIAR</button>
     </div>

@@ -1,20 +1,23 @@
-
-<div class="titulo"><span class="textotit">LABERINTO</span></div>
-<div class="divtimer"><span class="timer">{{ formatTime() }}</span></div>
-<div class="maze-container">
-  
-    <div class="maze">
-        <div *ngFor="let row of maze; let i = index" class="row">
-            <div *ngFor="let cell of row; let j = index" 
-                 [ngClass]="{
-                   'wall': cell === 1,
-                   'path': cell === 0,
-                   'exit': exitPosition.x === i && exitPosition.y === j
-                 }">
+<div class="game-container">
+  <div class="titulo"><span class="textotit">LABERINTO</span></div>
+  <div class="divtimer"><span class="timer">{{ formatTime() }}</span></div>
+  <div class="maze-container">
+    
+      <div class="maze">
+          <div *ngFor="let row of maze; let i = index" class="row">
+              <div *ngFor="let cell of row; let j = index" 
+                   [ngClass]="{
+                     'wall': cell === 1,
+                     'path': cell === 0,
+                     'exit': exitPosition.x === i && exitPosition.y === j
+                   }">
+              </div>
             </div>
-          </div>
+    
   
-
-      <div class="player" [ngStyle]="{'top.px': playerPixelPosition.top, 'left.px': playerPixelPosition.left}"></div>
+        <div class="player" [ngStyle]="{'top.px': playerPixelPosition.top, 'left.px': playerPixelPosition.left}"></div>
+      </div>
     </div>
-  </div>
+    <button (click)="restartGame()">Reiniciar Juego</button>
+</div>
+
