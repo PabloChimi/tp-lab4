@@ -8,6 +8,8 @@ import { AhorcadoComponent } from './component/juegos/ahorcado/ahorcado.componen
 import { MayormenorComponent } from './component/juegos/mayormenor/mayormenor.component';
 import { LaberintoComponent } from './component/juegos/laberinto/laberinto.component';
 import { PreguntadosComponent } from './component/juegos/preguntados/preguntados.component';
+import { ResultadosComponent } from './component/resultados/resultados.component';
+import { EncuestaComponent } from './component/encuesta/encuesta.component';
 
 export const routes: Routes = [
     // Si le ponemos 'prefix' nos va a arrojar un error en la consola de redireccion infinita
@@ -20,6 +22,9 @@ export const routes: Routes = [
     { path: 'mayoromenor', component: MayormenorComponent },
     { path: 'laberinto', component: LaberintoComponent },
     { path: 'preguntados', component: PreguntadosComponent },
+    { path: 'resultados', component: ResultadosComponent },
+    { path: 'encuesta', component: EncuestaComponent },
+
     // La ruta comodin debe ir siempre al final
     { path: '**', component: PageNotFoundComponent },
     

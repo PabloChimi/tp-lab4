@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Resultado } from '../../../interface/resultado';
 import { AuthenticationService } from '../../../services/authentication.service';
@@ -9,7 +9,7 @@ import { ResultadoService } from '../../../services/resultado.service';
 @Component({
   selector: 'app-laberinto',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule , RouterLink],
   templateUrl: './laberinto.component.html',
   styleUrl: './laberinto.component.css'
 })

@@ -1,19 +1,16 @@
 <div class="d-flex justify-content-center align-items-center mt-5">
-  <div class="card card-style" style="width: 400px;">
+  <div class="card card-style">
     <div class="tab-content" id="pills-tabContent">
       <!-- Login Tab -->
       <div class="tab-pane fade show active" id="pills-home" role="tabpanel" style="background-color: #8EB7C3;">
         <div class="form px-4 pt-5">
-          <input type="text" name="email" class="form-control" placeholder="Email"
-            [(ngModel)]="emailIngresado">
-          <input type="password" name="password" class="form-control" placeholder="Contraseña"
-            [(ngModel)]="passwordIngresado">
+          <input type="text" name="email" class="form-control" placeholder="Email" [(ngModel)]="emailIngresado">
+          <input type="password" name="password" class="form-control" placeholder="Contraseña" [(ngModel)]="passwordIngresado">
           <button class="btn btn-primary btn-block" (click)="login()">Login</button>
         </div>
-        <div class="quick-access px-4 py-3">
-          <button type="button" class="btn btn-secondary"
-            (click)="fillCredentials('admin@hotmail.com', 'administrador')">Admin</button>
-          <button type="button" class="btn btn-secondary" (click)="fillCredentials('juancarlos@gmail.com', 'juancarlos')">Juan carlos</button>
+        <div class="quick-access d-flex justify-content-center px-4 py-3">
+          <button type="button" class="btn btn-secondary" (click)="fillCredentials('admin@hotmail.com', 'administrador')">Admin</button>
+          <button type="button" class="btn btn-secondary" (click)="fillCredentials('juancarlos@gmail.com', 'juancarlos')">Juan Carlos</button>
           <button type="button" class="btn btn-secondary" (click)="fillCredentials('test2@gmail.com', 'testtesttest')">Test2</button>
         </div>
       </div>

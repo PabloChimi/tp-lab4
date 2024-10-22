@@ -1,0 +1,79 @@
+/* Estilos para la tarjeta principal */
+.card {
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Sombra de caja */
+    margin: 20px auto; /* Espaciado vertical */
+    max-width: 600px; /* Ancho máximo */
+    padding-bottom: 15px;
+}
+
+/* Estilos para el encabezado de la tarjeta */
+.card-header {
+    background-color: #6D4F92!important; /* Fondo azul */
+    text-align: center;
+}
+
+/* Estilos para el título de la tarjeta */
+.card-title {
+    font-size: 1.5rem; /* Tamaño de fuente */
+}
+
+/* Estilos para el icono */
+.text-center i {
+    color: #6D4F92; /* Color del icono */
+}
+
+/* Estilos para el texto destacado */
+.text-center strong {
+    font-size: 1.25rem; /* Tamaño de fuente mayor */
+}
+
+/* Estilos para los inputs y selects */
+.form-control {
+    border-radius: 8px; /* Bordes redondeados */
+    border: 1px solid #ced4da; /* Borde */
+    transition: border-color 0.3s; /* Transición suave */
+}
+
+/* Cambios de borde al enfocar */
+.form-control:focus {
+    border-color: #6D4F92; /* Borde azul al enfocar */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Sombra azul */
+}
+
+/* Estilos para los errores */
+.invalido {
+    color: #dc3545; /* Color rojo */
+    font-size: 0.9rem; /* Tamaño de fuente menor */
+}
+
+/* Estilos para el botón de enviar */
+.btn-primary {
+    background-color: #6D4F92; /* Color de fondo azul */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+    margin-right: 10px;
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+.btn-primary:hover {
+    background-color: rgba(0, 87, 179, 0.514); /* Color más oscuro */
+}
+
+/* Estilos para el botón de salir */
+.btn-danger {
+    background-color: #dc3545; /* Color de fondo rojo */
+    border: none; /* Sin borde */
+    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 1rem; /* Tamaño de fuente */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+/* Efecto al pasar el mouse sobre el botón */
+.btn-danger:hover {
+    background-color: #c82333; /* Color más oscuro */
+}

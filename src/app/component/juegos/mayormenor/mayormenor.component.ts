@@ -2,7 +2,7 @@ import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { Component } from '@angular/core';
 import { cards  } from '../../../../environmentConfig';
 import { Card } from '../../../interface/card';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication.service';
 import { ResultadoService } from '../../../services/resultado.service';
 import { Resultado } from '../../../interface/resultado';
@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-mayormenor',
   standalone: true,
-  imports: [ CommonModule ],
+  imports: [ CommonModule, RouterLink ],
   templateUrl: './mayormenor.component.html',
   styleUrl: './mayormenor.component.css'
 })

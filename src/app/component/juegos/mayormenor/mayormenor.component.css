@@ -7,6 +7,8 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     color: white;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
   
   h1 {
@@ -48,3 +50,14 @@
     color: #ff6b6b;
   }
   
+  .volver {
+    background-color: rgba(235, 56, 56, 0.808);
+    display: block;
+    margin-left: 30px;
+    hover{
+      background-color: rgba(235, 56, 56, 0.808);
+    }
+  }
+  .volver:hover {
+  background-color: rgba(200, 50, 50, 0.9); /* Cambia el color de fondo cuando haces hover */
+}

@@ -1,6 +1,6 @@
 import { CommonModule, NgComponentOutlet } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { ResultadoService } from '../../../services/resultado.service';
 import { Resultado } from '../../../interface/resultado';
@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
 @Component({
   selector: 'app-ahorcado',
   standalone: true,
-  imports: [CommonModule, NgComponentOutlet],
+  imports: [CommonModule, NgComponentOutlet, RouterLink],
   templateUrl: './ahorcado.component.html',
   styleUrl: './ahorcado.component.css'
 })

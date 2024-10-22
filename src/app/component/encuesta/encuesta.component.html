@@ -1,0 +1,237 @@
+<!-- <div class="mx-0 mx-sm-auto">
+    <div class="card">
+        <div class="card-header bg-primary">
+            <h5 class="card-title text-white mt-2" id="exampleModalLabel">Encuesta</h5>
+        </div>
+        <div class="modal-body">
+            <div class="text-center">
+                <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
+                <p>
+                    <strong>Tu opinión cuenta</strong>
+                </p>
+                <p>
+                    ¿Tienes algún comentario sobre la sala de juegos?
+                    <strong>Danos tu feedback.</strong>
+                </p>
+            </div>
+
+            <hr />
+
+            <form class="px-4" [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()">
+                <div class="row mb-4">
+                    <div class="col-sm-6">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" id="firstName" placeholder="Nombre" formControlName="nombre" required/>
+                        <p *ngIf="encuestaForm.controls['nombre'].errors?.['required'] && encuestaForm.controls['nombre'].touched" class="invalido pl-1">El nombre es requerido</p>
+                        <p *ngIf="encuestaForm.controls['nombre'].errors?.['minlength']" class="invalido pl-1">El nombre es demasiado corto</p>
+                        <p *ngIf="encuestaForm.controls['nombre'].errors?.['pattern']" class="invalido pl-1">Solo puede ingresar letras</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="apellido" class="form-label">Apellido</label>
+                        <input type="text" name="apellido" class="form-control" id="firstName" placeholder="Apellido" formControlName="apellido" required/>
+                        <p *ngIf="encuestaForm.controls['apellido'].errors?.['required'] && encuestaForm.controls['apellido'].touched" class="invalido">El apellido es requerido</p>
+                        <p *ngIf="encuestaForm.controls['apellido'].errors?.['minlength']" class="invalido pl-1">El apellido es demasiado corto</p>
+                        <p *ngIf="encuestaForm.controls['apellido'].errors?.['pattern']" class="invalido pl-1">Solo puede ingresar letras</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="edad" class="form-label">Edad</label>
+                        <input type="number" name="edad" class="form-control" id="firstName" placeholder="Edad" formControlName="edad" required/>
+                        <p *ngIf="encuestaForm.controls['edad'].errors?.['required'] && encuestaForm.controls['edad'].touched" class="invalido pl-1">La edad es requerida</p>
+                        <p *ngIf="encuestaForm.controls['edad'].errors?.['min']" class="invalido pl-1">Usted debe ser mayor de 18 años</p>
+                        <p *ngIf="encuestaForm.controls['edad'].errors?.['max']" class="invalido pl-1">Usted debe ser menor de 99 años</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="text" name="telefono" class="form-control" id="firstName" placeholder="Teléfono" formControlName="telefono" required/>
+                        <p *ngIf="encuestaForm.controls['telefono'].errors?.['required'] && encuestaForm.controls['telefono'].touched" class="invalido pl-1">El teléfono es requerido</p>
+                        <p *ngIf="encuestaForm.controls['telefono'].errors?.['maxlength']" class="invalido pl-1">El teléfono debe tener máximo 10 caracteres</p>
+                        <p *ngIf="encuestaForm.controls['telefono'].errors?.['pattern']" class="invalido pl-1">Debe ingresar solo números</p>
+                    </div>
+                </div>
+
+                <p class="text-center"><strong>Tu puntuación:</strong></p>
+                <div class="text-center mb-3">
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example1" value="muy bueno" formControlName="puntuacion" />
+                        <label class="form-check-label" for="radio3Example1">Muy bueno</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example2" value="bueno" formControlName="puntuacion"/>
+                        <label class="form-check-label" for="radio3Example2">Bueno</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example3" value="regular" formControlName="puntuacion"/>
+                        <label class="form-check-label" for="radio3Example3">Regular</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example4" value="malo" formControlName="puntuacion"/>
+                        <label class="form-check-label" for="radio3Example4">Malo</label>
+                    </div>
+                </div>
+
+                <p class="text-center"><strong>¿Cuál fue tu juego favorito?</strong></p>
+                <div class="text-center mb-4">
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" id="radio3Example1" value="ahorcado" name="juego" formControlName="juego"/>
+                        <label class="form-check-label" for="radio3Example1">Ahorcado</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" id="radio3Example2" value="batalla" name="juego" formControlName="juego"/>
+                        <label class="form-check-label" for="radio3Example2">Batalla Naval</label>
+                    </div>
+                    <div class="form-check form-check-inline mb-2">
+                        <input class="form-check-input" type="radio" id="radio3Example3" value="laberinto" name="juego" formControlName="juego"/>
+                        <label class="form-check-label" for="radio3Example3">Laberinto</label>
+                    </div>
+                </div>
+
+                <p class="text-center"><strong>Comentarios:</strong></p>
+                <textarea class="form-control mb-3" placeholder="Escribe tus comentarios aquí..." formControlName="comentarios" rows="4"></textarea>
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Enviar</button>
+                    <button type="button" class="btn btn-danger" (click)="salir()">Salir</button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div> -->
+
+<div class="mx-0 mx-sm-auto">
+    <div class="card">
+      <div class="card-header bg-primary">
+        <h5 class="card-title text-white mt-2" id="exampleModalLabel">Encuesta</h5>
+      </div>
+      <div class="modal-body">
+        <div class="text-center">
+          <i class="far fa-file-alt fa-4x mb-3 text-primary"></i>
+          <p>
+            <strong>Tu opinion cuenta</strong>
+          </p>
+          <p>
+        ¿Tenes algun comentario sobre la sala de juegos?
+            <strong>Danos tu feedback.</strong>
+          </p>
+        </div>
+  
+        <hr />
+  
+        <form class="px-4" [formGroup]="encuestaForm" (ngSubmit)="enviarEncuesta()">
+
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" id="firstName" placeholder="Nombre" formControlName="nombre" required/>
+                    <p *ngIf="encuestaForm.controls['nombre'].errors?.['required'] && encuestaForm.controls['nombre'].touched" class="invalido pl-1">El nombre es requerido</p>
+                    <p *ngIf="encuestaForm.controls['nombre'].errors?.['minlength']" class="invalido pl-1">El nombre es demasiado corto</p>
+                    <p *ngIf="encuestaForm.controls['nombre'].errors?.['pattern']" class="invalido pl-1">Solo puede ingresar letras</p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" name="nombre" class="form-control" id="firstName" placeholder="Apellido" formControlName="apellido" required/>
+                    <p *ngIf="encuestaForm.controls['apellido'].errors?.['required'] && encuestaForm.controls['apellido'].touched" class="invalido">El apellido es requerido</p>
+                    <p *ngIf="encuestaForm.controls['apellido'].errors?.['minlength']" class="invalido pl-1">El apellido es demasiado corto</p>
+                    <p *ngIf="encuestaForm.controls['apellido'].errors?.['pattern']" class="invalido pl-1">Solo puede ingresar letras</p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="edad" class="form-label">Edad</label>
+                    <input type="number" name="nombre" class="form-control" id="firstName" placeholder="Edad" formControlName="edad" required/>
+                    <p *ngIf="encuestaForm.controls['edad'].errors?.['required'] && encuestaForm.controls['edad'].touched" class="invalido pl-1">La edad es requerida</p>
+                    <p *ngIf="encuestaForm.controls['edad'].errors?.['min']" class="invalido pl-1">Usted debe ser mayor de 18 años</p>
+                    <p *ngIf="encuestaForm.controls['edad'].errors?.['max']" class="invalido pl-1">Usted debe ser menor de 99 años</p>
+                </div>
+                <div class="col-sm-6">
+                    <label for="telefono" class="form-label">Telefono</label>
+                    <input type="text" name="nombre" class="form-control" id="firstName" placeholder="Telefono" formControlName="telefono" required/>
+                    <p *ngIf="encuestaForm.controls['telefono'].errors?.['required'] && encuestaForm.controls['telefono'].touched" class="invalido pl-1">El telefono es requerido</p>
+                    <p *ngIf="encuestaForm.controls['telefono'].errors?.['maxlength']" class="invalido pl-1">El telefono debe tener maximo 10 caracteres</p>
+                    <p *ngIf="encuestaForm.controls['telefono'].errors?.['pattern']" class="invalido pl-1">Debe ingresar solo numeros</p>
+                </div>
+            </div>
+
+            <p class="text-center"><strong>¿Cual fue tu juego favorito?</strong></p>
+            <div class="text-center mb-4">
+
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" id="radio3Example1" value="ahorcado" name="juegoFavorito" formControlName="juegoFavorito"/>
+                <label class="form-check-label" for="radio3Example1">
+                Ahorcado
+                </label>
+                </div>
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" id="radio3Example2" value="mayor o menor" name="juegoFavorito" formControlName="juegoFavorito"/>
+                <label class="form-check-label" for="radio3Example2">
+                    Mayor o Menor
+                </label>
+                </div>
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" id="radio3Example3" value="reflejos" name="juegoFavorito" formControlName="juegoFavorito"/>
+                <label class="form-check-label" for="radio3Example3">
+                    Laberinto
+                </label>
+                </div>
+                <div class="form-check form-check-inline  mb-2">
+                <input class="form-check-input" type="radio" id="radio3Example4" value="preguntados" name="juegoFavorito" formControlName="juegoFavorito"/>
+                <label class="form-check-label" for="radio3Example4">
+                    Preguntados
+                </label>
+                </div>
+            </div>
+            <p class="text-center"><strong>Tu puntuacion:</strong></p>
+  
+            <div class="text-center mb-3">
+
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example1" value="muy bueno" formControlName="puntuacion" />
+                <label class="form-check-label" for="radio3Example1">
+                Muy bueno
+                </label>
+                </div>
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example2" value="bueno" formControlName="puntuacion"/>
+                <label class="form-check-label" for="radio3Example2">
+                    Bueno
+                </label>
+                </div>
+                <div class="form-check form-check-inline mb-2">
+                <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example3" value="regular" formControlName="puntuacion"/>
+                <label class="form-check-label" for="radio3Example3">
+                    Regular
+                </label>
+                </div>
+                <div class="form-check form-check-inline  mb-2">
+                <input class="form-check-input" type="radio" name="puntuacion" id="radio3Example4" value="malo" formControlName="puntuacion"/>
+                <label class="form-check-label" for="radio3Example4">
+                    Malo
+                </label>
+                </div>
+            </div>
+          
+
+        
+            <p class="text-center"><strong>¿Que podria mejorar?</strong></p>
+  
+            <!-- Message input -->
+            <div class="form-outline mb-4">
+                <textarea class="form-control" id="form4Example3" rows="4" placeholder="Escriba aqui" name="texto" formControlName="texto"></textarea>
+                <p *ngIf="encuestaForm.controls['texto'].errors?.['required'] && encuestaForm.controls['texto'].touched" class="invalido pl-1">El texto es obligatorio</p>
+                <p *ngIf="encuestaForm.controls['texto'].errors?.['minlength']" class="invalido pl-1">El texto es muy corto</p>
+                
+            </div>
+            
+            <div class="quick-access d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary" [disabled]="!encuestaForm.valid" >Enviar</button>
+                <a routerLink="/" class="btn btn-danger">Salir</a>
+            </div>
+            <div class="quick-access d-flex justify-content-center">
+                <p *ngIf="!encuestaForm.valid" class="invalido pl-1">Complete todo el formulario para poder enviar la encuesta</p>
+
+            </div>
+
+            
+        </form>
+      </div>
+      
+    </div>
+  </div>
