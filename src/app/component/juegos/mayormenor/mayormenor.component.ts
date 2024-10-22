@@ -17,7 +17,7 @@ export class MayormenorComponent {
   message: string = '';
   imagenesDiccionario = cards;
   selectedImage: string | null = null;
-  gameOver: boolean = false;  // Nueva propiedad para determinar si el juego terminó
+  gameOver: boolean = false; 
 
   constructor() { }
 
@@ -39,7 +39,7 @@ export class MayormenorComponent {
     this.message = '';
     this.currentCard = this.drawCard();
     this.nextCard = this.drawCard();
-    this.gameOver = false;  // Restablecer la propiedad cuando el juego comienza de nuevo
+    this.gameOver = false; 
 
   }
 
@@ -80,6 +80,6 @@ export class MayormenorComponent {
   // Lógica de error
   wrongGuess(): void {
     this.message = '¡Te equivocaste! Tu puntuación es: ' + this.score;
-    this.gameOver = true;  // Bloquear los botones cuando el jugador se equivoque
+    this.gameOver = true; 
   }
 }

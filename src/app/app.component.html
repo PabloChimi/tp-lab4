@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div *ngIf="isLoggedIn">
+<div >
   <!-- Icono de chat en la esquina inferior derecha -->
   <div class="chat-icon" (click)="toggleChat()">
-      <fa-icon [icon]="faComment"></fa-icon>
+      <fa-icon [icon]="faComment" size="2x"></fa-icon>
   </div>
 
   <!-- Mostrar la ventana del chat solo cuando isChatOpen es true -->

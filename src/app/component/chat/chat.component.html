@@ -1,4 +1,4 @@
-<div class="chat-container">
+<!-- <div class="chat-container">
   <div class="messages" #messagesContainer>
     <div *ngFor="let message of messages" class="message">
       <strong>{{ message.userName }}:</strong> {{ message.text }}
@@ -8,4 +8,58 @@
     <input [(ngModel)]="messageText" placeholder="Escribe un mensaje..." />
     <button (click)="sendMessage()">Enviar</button>
   </div>
+</div> -->
+
+<!-- <div class="chat-container">
+  <div class="messages" #messagesContainer>
+    <div *ngFor="let message of messages" 
+         [ngClass]="{'my-message': message.userName === currentUserName, 'other-message': message.userName !== currentUserName}">
+      
+      <div class="message-content">
+        <ng-container *ngIf="message.userName !== currentUserName">
+          <strong>{{ message.userName }}:</strong>
+        </ng-container>
+        {{ message.text }}
+      </div>
+
+      <div class="message-info">
+        <ng-container *ngIf="message.userName == currentUserName">
+        </ng-container>
+        <span>{{ message.date }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-container">
+    <input [(ngModel)]="messageText" placeholder="Escribe un mensaje..." />
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
+</div> -->
+
+
+<div class="chat-container">
+  <div class="messages" #messagesContainer>
+    <div *ngFor="let message of messages" 
+         [ngClass]="{'my-message': isMyMessage(message), 'other-message': !isMyMessage(message)}">
+      
+      <!-- Mensajes de otros usuarios -->
+      <div class="message-content">
+        <ng-container *ngIf="!isMyMessage(message)">
+          <strong>{{ message.userName }}</strong>
+        </ng-container>
+        <div>{{ message.text }}</div>
+      </div>
+
+      <!-- Fecha del mensaje -->
+      <div class="message-info">
+        <span style="margin-left:auto;">{{ message.date }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-container">
+    <input [(ngModel)]="messageText" placeholder="Escribe un mensaje..." />
+    <button (click)="sendMessage()">Enviar</button>
+  </div>
 </div>
+

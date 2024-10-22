@@ -1,0 +1,35 @@
+.body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #23252C;
+    color: white ;
+}
+
+.game-container {
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+  }
+
+
+.modal{
+    color: black;
+}
+.respuesta{
+    cursor: pointer;
+}
+.respuesta:hover{
+    background-color: #7cb9fa;
+}
+.mostrar{
+    display: block;
+}
+.oculto{
+    display: none;
+}

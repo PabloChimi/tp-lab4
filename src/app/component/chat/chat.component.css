@@ -1,7 +1,7 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    height: 100%; /* Asegúrate de que ocupe toda la altura del contenedor padre */
+    height: 100%; 
     background-color: #f1f1f1;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -9,9 +9,9 @@
 }
 
 .messages {
-    flex-grow: 1; /* Esto permite que la zona de mensajes ocupe todo el espacio restante */
+    flex-grow: 1; 
     padding: 10px;
-    overflow-y: auto; /* Para permitir scroll si los mensajes exceden la altura disponible */
+    overflow-y: auto; 
     background-color: white;
 }
 
@@ -19,11 +19,11 @@
     display: flex;
     padding: 10px;
     background-color: #f1f1f1;
-    border-top: 1px solid #ccc; /* Agregar una línea divisoria en la parte superior */
+    border-top: 1px solid #ccc; 
 }
 
 input {
-    flex-grow: 1; /* Esto permite que el input se ajuste al espacio disponible */
+    flex-grow: 1;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -38,3 +38,110 @@ button {
     border-radius: 5px;
     cursor: pointer;
 }
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .my-message {
+    align-self: flex-end;
+    background-color: #DCF8C6; /* Fondo de los mensajes propios */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 60%;
+  }
+  
+  .other-message {
+    align-self: flex-start;
+    background-color: #E5E5EA; /* Fondo de los mensajes de otros usuarios */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 60%;
+  }
+  
+  .message-content {
+    font-size: 14px;
+  }
+  
+  .message-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+  }
+
+  
+
+
+
+
+  .chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .my-message {
+    align-self: flex-end; /* Alinea los mensajes propios a la derecha */
+    background-color: #DCF8C6; /* Fondo de los mensajes propios */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 60%;
+    text-align: right; /* Alinea el texto del mensaje a la derecha */
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .other-message {
+    align-self: flex-start; /* Alinea los mensajes de otros a la izquierda */
+    background-color: #E5E5EA; /* Fondo de los mensajes de otros usuarios */
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 60%;
+    text-align: left; /* Alinea el texto del mensaje a la izquierda */
+    margin-bottom: 5px;
+  }
+  
+  .message-content {
+    font-size: 14px;
+  }
+  
+  .message-info {
+    font-size: 12px;
+    color: #888;
+    margin-top: 5px;
+    text-align: right; /* Alinea la fecha a la derecha para los mensajes propios */
+  }
+  
+  .other-message .message-info {
+    text-align: left; /* Alinea la fecha a la izquierda para los mensajes de otros */
+  }
+  

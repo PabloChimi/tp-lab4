@@ -7,7 +7,6 @@
     </div>
     
     <div *ngIf="nextCard">
-      <!-- Deshabilitar los botones si el juego ha terminado -->
       <button (click)="guessHigher()" [disabled]="gameOver">Mayor</button>
       <button (click)="guessLower()" [disabled]="gameOver">Menor</button>
     </div>

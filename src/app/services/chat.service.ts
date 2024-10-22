@@ -19,7 +19,7 @@ export class ChatService implements OnInit{
   constructor(private firestore: AngularFirestore, private authService: AuthenticationService) {}
 
   getMessages() {
-    return this.firestore.collection('messages', ref => ref.orderBy('timestamp')).valueChanges();
+    return this.firestore.collection('messages', ref => ref.orderBy('date')).valueChanges();
   }
 
   async sendMessage(text: string) {
@@ -28,6 +28,21 @@ export class ChatService implements OnInit{
       text,
       userName: user,
       timestamp: new Date()
+    });
+  }
+
+  async sendMessage2(message: {
+    userName: string;
+    text: string;
+    date: Date;
+}) {
+    const user = await this.authService.getUserLoggedName();
+    console.log("agrego")
+    console.log()
+    return this.firestore.collection('messages').add({
+      text: message.text,
+      userName: message.userName,
+      date: new Date().toLocaleString()
     });
   }
 }

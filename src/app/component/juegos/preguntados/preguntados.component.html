@@ -1,1 +1,48 @@
-<p>preguntados works!</p>
+<div class="body game-container">
+  
+    <div class="container">
+      <div class="row mb-5">
+          <div class="col-6 offset-3" *ngIf="paisCorrecto">
+              <div class="d-flex justify-content-center align-items-center text-center flex-column">
+                  <h4 style="margin-bottom: 30px;">¿Cual es el nombre de este pais?</h4>
+                  <img src={{paisCorrecto.flags.png}} width="300px">
+                  
+              </div>
+              
+          </div>
+      </div>
+  
+      <div class="row">
+          <div class="col-6 offset-3">
+              <div class="alert respuesta" *ngFor="let item of preguntas" [ngClass]="item.correcto ? 'alert-success' : 'alert-primary'" (click)="respuestaSeleccionada(item)">
+                  {{item.name.common}}
+              </div>
+          </div>
+      </div>
+      <a routerLink="/" class="btn btn-danger mt-5">Volver</a>
+    </div>
+  
+  <!-- Modal -->
+  
+    <div class="modal" [ngClass]="displayModal ? 'mostrar' : 'oculto'" >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{modalMsj1}}</h5>
+            <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;tu mama</span>
+            </button> -->
+          </div>
+          <div class="modal-body">
+            <p>{{modalMsj2}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="terminarJuego()" >Cerrar y volver al menu</button>
+            <button type="button" class="btn btn-primary" (click)="reiniciar()">Seguir jugando</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  
+  </div>

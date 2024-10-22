@@ -1,0 +1,66 @@
+ .maze-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .maze {
+    position: relative;
+    display: grid;
+    gap: 3px;
+  }
+  
+  .row {
+    display: flex;
+  }
+  
+  .wall, .path {
+    width: 60px;
+    height: 60px;
+    box-sizing: border-box;
+  }
+  
+  .wall {
+    background-color: black;
+  }
+  
+  .path {
+    background-color: white;
+  }
+  
+  .player {
+    position: absolute;
+    width: 60px;  
+    height: 60px;
+    background-color: red;
+    transition: all 0.2s ease-in-out; 
+  }
+  
+  
+  .exit {
+    background-color: green;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+.timer {
+  font-size: 80px;
+  align-items: center;
+  text-align: center;
+}
+.divtimer {
+  padding-top: -20px;
+  text-align: center;
+  line-height: 1;
+}
+.titulo{
+  line-height: 1;
+  text-align: center;
+}
+.textotit {
+  font-size: 80px;
+}

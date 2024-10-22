@@ -1,12 +1,36 @@
 <div class="hangman-container">
     <h2>Ahorcado</h2>
+    <div class="hangman-image">
+        <svg width="200" height="250" viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+            <!-- Base del ahorcado -->
+            <line x1="10" y1="230" x2="150" y2="230" stroke="black" stroke-width="5"/>
+            <line x1="80" y1="230" x2="80" y2="20" stroke="black" stroke-width="5"/>
+            <line x1="80" y1="20" x2="140" y2="20" stroke="black" stroke-width="5"/>
+            <line x1="140" y1="20" x2="140" y2="50" stroke="black" stroke-width="5"/>
 
-    <!-- Mostrar la palabra oculta con letras adivinadas -->
+            <!-- Cabeza -->
+            <circle cx="140" cy="70" r="20" stroke="black" stroke-width="4" fill="none" [attr.visibility]="attemptsLeft <= 5 ? 'visible' : 'hidden'"/>
+            
+            <!-- Cuerpo -->
+            <line x1="140" y1="90" x2="140" y2="150" stroke="black" stroke-width="4" [attr.visibility]="attemptsLeft <= 4 ? 'visible' : 'hidden'"/>
+            
+            <!-- Brazo izquierdo -->
+            <line x1="140" y1="100" x2="110" y2="130" stroke="black" stroke-width="4" [attr.visibility]="attemptsLeft <= 3 ? 'visible' : 'hidden'"/>
+            
+            <!-- Brazo derecho -->
+            <line x1="140" y1="100" x2="170" y2="130" stroke="black" stroke-width="4" [attr.visibility]="attemptsLeft <= 2 ? 'visible' : 'hidden'"/>
+            
+            <!-- Pierna izquierda -->
+            <line x1="140" y1="150" x2="110" y2="180" stroke="black" stroke-width="4" [attr.visibility]="attemptsLeft <= 1 ? 'visible' : 'hidden'"/>
+            
+            <!-- Pierna derecha -->
+            <line x1="140" y1="150" x2="170" y2="180" stroke="black" stroke-width="4" [attr.visibility]="attemptsLeft === 0 ? 'visible' : 'hidden'"/>
+        </svg>
+    </div>
     <div class="word">
         <span *ngFor="let letter of getDisplayedWord()">{{ letter }}</span>
     </div>
-
-    <!-- Mostrar letras para seleccionar -->
+    
     <div class="alphabet">
         <button *ngFor="let letter of alphabet" [disabled]="isLetterGuessed(letter) || isGameWon() || isGameLost()"
             (click)="onLetterClick(letter)">
@@ -14,7 +38,6 @@
         </button>
     </div>
 
-    <!-- Estado del juego -->
     <div class="game-status">
         <p *ngIf="isGameWon()">¡Ganaste!</p>
         <p *ngIf="isGameLost()">¡Perdiste! La palabra era {{ secretWord }}.</p>
