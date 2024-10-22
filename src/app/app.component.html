@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div >
+<div *ngIf="isLoggedIn">
   <!-- Icono de chat en la esquina inferior derecha -->
   <div class="chat-icon" (click)="toggleChat()">
       <fa-icon [icon]="faComment" size="2x"></fa-icon>
