@@ -1,0 +1,45 @@
+/* Estilo para el título */
+.title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #333;
+    text-transform: uppercase;
+  }
+  
+  /* Estilos personalizados para la tabla */
+  .table {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .table thead {
+    color: #fff;
+    background-color: #4C4F59;
+  }
+  
+  .table th, .table td {
+    vertical-align: middle; /* Centra verticalmente el texto */
+    padding: 16px; /* Espacio más amplio para las celdas */
+  }
+  
+  .table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f8f9fa;
+  }
+  
+  .table-striped tbody tr:hover {
+    background-color: #e9ecef; /* Color de fondo al pasar el cursor */
+  }
+  
+  .table-bordered {
+    border: 1px solid #dee2e6;
+  }
+  
+  .table-hover tbody tr:hover {
+    transition: background-color 0.3s ease; /* Transición suave */
+  }
+  
+  .table td:first-child {
+    font-weight: bold; /* Resalta la primera columna */
+  }
+  

@@ -13,7 +13,8 @@ export class AuthenticationService implements OnInit{
   private isLoggedInSubject = new BehaviorSubject<boolean>(false);
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
   private loggedUserName = "";
-  
+  isLogged = false;
+  isAdmin =  false;
   constructor(public auth: AngularFireAuth, public router: Router, public ngZone: NgZone, public snackBar: MatSnackBar, private firestore: Firestore) { 
     }
 
@@ -27,6 +28,8 @@ export class AuthenticationService implements OnInit{
         let col = collection(this.firestore, 'logins');
         addDoc(col, { fecha: new Date(), "user": email});
 
+        this.isLogged = true;
+        this.isAdmin = email.toLowerCase().includes("admin"); 
         this.loggedUserName = email;
         this.isLoggedInSubject.next(true);
         this.router.navigate(['/']);
@@ -87,6 +90,8 @@ export class AuthenticationService implements OnInit{
     this.isLoggedInSubject.next(false);
     this.auth.signOut();
     this.router.navigate(['/login'])
+    this.isLogged = false;
+    this.isAdmin = false;
   }
 
   getUserLoggedName() {

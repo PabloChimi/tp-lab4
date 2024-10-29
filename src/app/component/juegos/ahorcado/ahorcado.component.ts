@@ -11,7 +11,7 @@ import { AuthenticationService } from '../../../services/authentication.service'
   standalone: true,
   imports: [CommonModule, NgComponentOutlet, RouterLink],
   templateUrl: './ahorcado.component.html',
-  styleUrl: './ahorcado.component.css'
+  styleUrls: ['./ahorcado.component.css']
 })
 export class AhorcadoComponent {
   secretWord: string = 'ANGULAR';
@@ -23,12 +23,12 @@ export class AhorcadoComponent {
   // Intentos restantes
   attemptsLeft: number = 6;
   gameOver: boolean = false;
-  resultado = 0;
+  resultado = 0; // Resultado del juego
   gameWon: boolean = false;
   gameLost: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef, private router: Router, private resultadoService: ResultadoService, private authService: AuthenticationService) {
-    this.secretWord = this.wordList[Math.floor(Math.random() * this.wordList.length) + 1];
+    this.restartGame();
   }
 
   ngOnInit(): void {
@@ -38,19 +38,21 @@ export class AhorcadoComponent {
   }
 
   restartGame() {
-    this.secretWord = this.wordList[Math.floor(Math.random() * this.wordList.length) + 1];
+    this.secretWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
     this.attemptsLeft = 6;
-    this.resultado = 0;
+    this.resultado = 0; // Reinicia el resultado al comenzar un nuevo juego
     this.gameOver = false;
     this.gameWon = false;
     this.gameLost = false;
-    this.guessedLetters = [];
+    this.guessedLetters = []; // Reinicia las letras adivinadas
   }
 
   restartGameWithAttempts() {
-    this.secretWord = this.wordList[Math.floor(Math.random() * this.wordList.length) + 1];
-    this.guessedLetters = [];
-    // this.cdr.detectChanges();
+    this.secretWord = this.wordList[Math.floor(Math.random() * this.wordList.length)];
+    this.gameOver = false;
+    this.gameWon = false;
+    this.gameLost = false;
+    this.guessedLetters = []; // Reinicia las letras adivinadas
   }
 
   // Obtener el estado de una letra
@@ -63,7 +65,7 @@ export class AhorcadoComponent {
     if (!this.isLetterGuessed(letter)) {
       this.guessedLetters.push(letter);
       if (!this.secretWord.includes(letter)) {
-        this.attemptsLeft--;
+        this.attemptsLeft--; // Resta un intento si es incorrecto
       }
     }
     this.checkGameState();
@@ -72,10 +74,23 @@ export class AhorcadoComponent {
   checkGameState() {
     if (this.isGameWon()) {
       this.gameWon = true;
+      this.resultado++; // Suma 1 al resultado solo cuando se gana
+      this.gameOver = true; // Termina el juego si gana
+      if(this.attemptsLeft > 0) {
+        console.log("Entro al attempts mayor 0")
+        this.restartGameWithAttempts()
+      }else  {
+        console.log("Entro al attempts menor 0")
+
+        this.win(); // Muestra la ventana de ganador
+      }
     }
 
     if (this.isGameLost()) {
       this.gameLost = true;
+      this.gameOver = true; // Termina el juego si pierde
+      this.win(); // Muestra la ventana de ganador
+
     }
   }
 
@@ -91,31 +106,12 @@ export class AhorcadoComponent {
 
   // Comprobar si el jugador ha perdido
   isGameLost(): boolean {
-    var gameLost = this.attemptsLeft <= 0;
-    if (gameLost) {
-      console.log("Entro al lost")
-
-      this.gameOver = true;
-      this.win();
-    }
-    return gameLost;
+    return this.attemptsLeft <= 0 && !this.gameWon;
   }
 
   // Comprobar si el jugador ha ganado
   isGameWon(): boolean {
-    var gameLost = this.secretWord.split('').every(letter => this.guessedLetters.includes(letter));
-    if (gameLost) {
-      if (this.attemptsLeft > 0) {
-        this.resultado++;
-        this.restartGameWithAttempts()
-        this.gameOver = false;
-      } else {
-        this.gameOver = true;
-        console.log("Entro al win")
-        this.win();
-      }
-    }
-    return gameLost;
+    return this.secretWord.split('').every(letter => this.guessedLetters.includes(letter));
   }
 
   win() {
@@ -131,22 +127,19 @@ export class AhorcadoComponent {
       showCancelButton: true,
       cancelButtonText: 'Seguir jugando'
     }).then((result) => {
-      console.log(result)
       if (result.isConfirmed) {
-        console.log("Entro 1")
         this.guardarDatos();
-        this.restartGame();
-        this.router.navigateByUrl('resultados');
+        this.restartGame(); // Reinicia el juego después de guardar
+        this.router.navigateByUrl('resultadosJuegos');
       } else {
-        console.log("Entro 2")
-        this.restartGame();
+        this.restartGame(); // Reinicia el juego al continuar jugando
       }
     });
   }
 
   guardarDatos() {
     const tiempo = new Date().getTime();
-    const fecha = new Date(tiempo);    
+    const fecha = new Date(tiempo);
     const fechaParseada = fecha.toString();
     let resultado: Resultado = {
       email: this.authService.getUserLoggedName(),
@@ -155,6 +148,5 @@ export class AhorcadoComponent {
       resultado: this.resultado
     }
     this.resultadoService.enviarResultado(resultado);
-
   }
 }

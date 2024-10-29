@@ -1,6 +1,6 @@
 .about-container {
   max-width: 800px;
-  margin: 50px auto;
+  margin: 10px auto;
   padding: 20px;
   background: rgba(0, 0, 0, 0.7); /* Fondo semi-transparente */
   border-radius: 15px;
@@ -15,7 +15,7 @@
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border: 3px solid #8EB7C3; /* Borde con el color principal */
 }
 
@@ -65,4 +65,25 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.title-container {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Alinea verticalmente en el centro */
+  gap: 10px; /* Espacio entre los títulos */
+  text-align: center; /* Centra el texto dentro de los elementos */
+}
+
+.title-main {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.title-secondary {
+  font-style: italic;
+  text-decoration: underline;
+  margin: 0;
+  font-size: 1.5em;
 }

@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
     // Si le ponemos 'prefix' nos va a arrojar un error en la consola de redireccion infinita
@@ -21,27 +22,37 @@ export const routes: Routes = [
     },
     {
         path: 'ahorcado',
-        loadComponent: () => import('./component/juegos/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent)
+        loadComponent: () => import('./component/juegos/ahorcado/ahorcado.component').then(c => c.AhorcadoComponent),
+        canActivate: [AuthGuard]
     },
     {
         path: 'mayoromenor',
-        loadComponent: () => import('./component/juegos/mayormenor/mayormenor.component').then(c => c.MayormenorComponent)
+        loadComponent: () => import('./component/juegos/mayormenor/mayormenor.component').then(c => c.MayormenorComponent),
+        canActivate: [AuthGuard]
     },
     {
         path: 'laberinto',
-        loadComponent: () => import('./component/juegos/laberinto/laberinto.component').then(c => c.LaberintoComponent)
+        loadComponent: () => import('./component/juegos/laberinto/laberinto.component').then(c => c.LaberintoComponent),
+        canActivate: [AuthGuard]
     },
     {
         path: 'preguntados',
-        loadComponent: () => import('./component/juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent)
+        loadComponent: () => import('./component/juegos/preguntados/preguntados.component').then(c => c.PreguntadosComponent),
+        canActivate: [AuthGuard]
     },
     {
-        path: 'resultados',
-        loadComponent: () => import('./component/resultados/resultados.component').then(c => c.ResultadosComponent)
+        path: 'resultadosJuegos',
+        loadComponent: () => import('./component/resultados/resultados.component').then(c => c.ResultadosComponent),
+        canActivate: [AuthGuard]
     },
     {
         path: 'encuesta',
         loadComponent: () => import('./component/encuesta/encuesta.component').then(c => c.EncuestaComponent)
+    },
+    {
+        path: 'resultadosEncuesta',
+        loadComponent: () => import('./component/resultado-encuesta/resultado-encuesta.component').then(c => c.ResultadoEncuestaComponent),
+        canActivate: [AuthGuard]
     },
     {
         path: '**',

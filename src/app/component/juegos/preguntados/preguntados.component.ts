@@ -102,11 +102,14 @@ export class PreguntadosComponent {
     if(item.name.common == this.paisCorrecto.name.common){
       item.correcto = true;
       this.cantidadAciertos++;
+      setTimeout(() => {
+        this.reiniciar();
+      }, 1000);
     }
     else{
       setTimeout(() => {
         this.win();
-      }, 500);
+      },1000);
     }
   }
 
@@ -145,16 +148,17 @@ export class PreguntadosComponent {
       heightAuto: false,
       cancelButtonColor: '#6D4F92',
       showCancelButton: true,
-      cancelButtonText: 'Seguir jugando'
+      cancelButtonText: 'Reiniciar y seguir jugando'
     }).then((result) => {
       console.log(result)
       if (result.isConfirmed) {
         console.log("Entro 1")
         this.guardarDatos();
         this.reiniciar();
-        this.router.navigateByUrl('resultados');
+        this.router.navigateByUrl('resultadosJuegos');
       } else {
         console.log("Entro 2")
+        this.cantidadAciertos = 0;
         this.reiniciar();
       }
     });

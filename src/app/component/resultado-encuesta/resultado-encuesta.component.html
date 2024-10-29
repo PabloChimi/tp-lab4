@@ -1,0 +1,28 @@
+<h1 class="title text-center my-4">Resultados de las encuestas</h1>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Edad</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Juego Favorito</th>
+                <th scope="col">Puntuación</th>
+                <th scope="col">Notas extra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of resultados">
+                <td>{{item.nombre}}</td>
+                <td>{{item.apellido}}</td>
+                <td>{{item.edad}}</td>
+                <td>{{item.telefono}}</td>
+                <td>{{item.juegoFavorito}}</td>
+                <td>{{item.puntuacion}}</td>
+                <td>{{item.texto}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

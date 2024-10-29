@@ -1,20 +1,31 @@
-<h1 class="title">Resultados de los juegos</h1>
+<h1 class="title text-center my-4">Resultados de los juegos</h1>
 
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th>Usuario</th>
-            <th>Juego</th>
-            <th>Fecha</th>
-            <th>Resultado</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of resultados">
-            <td>{{item.email}}</td>
-            <td>{{item.juego}}</td>
-            <td>{{item.fecha | date: 'dd/MM/yyyy'}}</td>
-            <td *ngIf="item.resultado">{{item.resultado}}</td>
-        </tr>
-    </tbody>
-</table>
+<!-- Botones de filtro -->
+<div class="button-group text-center mb-3">
+    <button class="btn btn-primary mx-2" (click)="filtrarJuego('Preguntados')">Preguntados</button>
+    <button class="btn btn-primary mx-2" (click)="filtrarJuego('Mayor o menor')">Mayor o menor</button>
+    <button class="btn btn-primary mx-2" (click)="filtrarJuego('Laberinto')">Laberinto</button>
+    <button class="btn btn-primary mx-2" (click)="filtrarJuego('Ahorcado')">Ahorcado</button>
+    <button class="btn btn-secondary mx-2" (click)="resetearFiltro()">Todos los juegos</button>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Juego</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Resultado</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of resultadosFiltrados">
+                <td>{{item.email}}</td>
+                <td>{{item.juego}}</td>
+                <td>{{item.fecha | date: 'dd/MM/yyyy'}}</td>
+                <td *ngIf="item.resultado">{{ item.resultado }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

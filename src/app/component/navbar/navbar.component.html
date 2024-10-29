@@ -1,8 +1,9 @@
 <nav class="navbar">
     <ul class="nav-left">
       <img [src]="imageSrc" class="circular-image" style="width: 52px; height: fit-content;" routerLink="/" routerLinkActive="active">
-      <li ><a routerLink="/resultados" routerLinkActive="active">Resultados</a></li>
+      <li ><a routerLink="/resultadosJuegos" routerLinkActive="active">Resultados juegos</a></li>
       <li ><a routerLink="/encuesta" routerLinkActive="active">Encuesta</a></li>
+      <li ><a routerLink="/resultadosEncuesta" routerLinkActive="active">Resultados encuesta</a></li>
     </ul>
     <ul class="nav-right">
       <li *ngIf="!isLoggedIn"><a routerLink="/login" routerLinkActive="active">Login</a></li>

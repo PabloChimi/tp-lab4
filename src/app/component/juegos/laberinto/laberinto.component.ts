@@ -24,7 +24,7 @@ export class LaberintoComponent implements OnInit{
 
   seconds : number = 0;
   intervalId: any;
-  tiempoJugador : any;
+  tiempoJugador!: string;
   gameOver = false;
   // playerPosition = { x: 1, y: 1 };
   // playerPixelPosition = { top: 20, left: 20 }; // Empieza en la posición (1, 1) de la cuadrícula.
@@ -199,7 +199,7 @@ win() {
       console.log("Entro 1")
       this.guardarDatos();
       this.restartGame();
-      this.router.navigateByUrl('resultados');
+      this.router.navigateByUrl('resultadosJuegos');
     } else {
       console.log("Entro 2")
       this.restartGame();
@@ -211,15 +211,30 @@ guardarDatos() {
   const tiempo = new Date().getTime();
   const fecha = new Date(tiempo);    
   const fechaParseada = fecha.toString();
+  const resultadoString = this.obtenerSegundosDesdeTiempo(this.tiempoJugador)
   let resultado: Resultado = {
     email: this.authService.getUserLoggedName(),
     fecha: fechaParseada,
     juego: 'Laberinto',
-    resultado: this.tiempoJugador
+    resultado: resultadoString
   }
   this.resultadoService.enviarResultado(resultado);
 
 }
-
+obtenerSegundosDesdeTiempo(tiempo: string): number {
+  // Separar la cadena en minutos y segundos
+  const partes = tiempo.split(':');
+  
+  // Asegurarse de que hay al menos dos partes
+  if (partes.length < 2) {
+    return 0; // Retornar 0 si no es un formato válido
+  }
+  
+  // Obtener los segundos (la segunda parte)
+  const segundos = partes[1];
+  
+  // Convertir a número y retornar
+  return Number(segundos); 
+}
 
 }

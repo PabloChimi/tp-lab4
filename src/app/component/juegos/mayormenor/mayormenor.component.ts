@@ -106,7 +106,7 @@ export class MayormenorComponent {
         console.log("Entro 1")
         this.guardarDatos();
         this.startGame();
-        this.router.navigateByUrl('resultados');
+        this.router.navigateByUrl('resultadosJuegos');
       } else {
         console.log("Entro 2")
         this.startGame();
